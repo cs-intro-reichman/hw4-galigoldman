@@ -27,6 +27,9 @@ public class ArrCharOps {
     /** Prints the given array of characters, and moves the cursor to the next line.
      */
     public static void println(char[] arr) {
+        if(arr == null){
+            return;
+        }
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i]);
         }
@@ -37,15 +40,23 @@ public class ArrCharOps {
      */
     public static char charAt(char[] arr, int index) {
         // Replace the following statement with your code
-        return 0;
+        return arr[index];
     }
 
     /** If the two arrays have the same value in every index, 
      *  returns true; Otherwise returns false.
      */
     public static boolean equals(char[] arr1, char[] arr2) {
-        // Replace the following statement with your code
-        return false;
+        int i;
+        if(arr1.length!=arr2.length){
+            return false;
+        }
+        for (i=0; i< arr1.length; i++){
+            if(arr1[i]!= arr2[i]){
+                return false;
+            }
+        }
+        return true;
     }
 
     /** Returns the index within the given array of the first occurrence of the given character.
@@ -53,6 +64,12 @@ public class ArrCharOps {
      */
     public static int indexOf(char[] arr, char ch) {
         // Replace the following statement with your code
+        int i;
+        for(i=0; i<arr.length; i++){
+            if(arr[i]==ch){
+                return i;
+            }
+        }
         return -1;
     }
 
@@ -60,6 +77,12 @@ public class ArrCharOps {
      */
     public static int indexOf(char[] arr, char ch, int fromIndex) {
         // Replace the following statement with your code
+        int i;
+        for (i=fromIndex; i<arr.length; i++){
+            if(arr[i]==ch){
+                return i;
+            }
+        }
         return -1;
     }
 
@@ -68,6 +91,10 @@ public class ArrCharOps {
      */
     public static int lastIndexOf(char[] arr, char ch) {
         // Replace the following statement with your code
+        int i;
+        for(i=arr.length-1; i>=0; i--){
+            return i;
+        }
         return -1;
     }
 
@@ -75,7 +102,15 @@ public class ArrCharOps {
     */
     public static char[] concat(char[] arr1, char[] arr2) {
         // Replace the following statement with your code
-        return null;
+        char[] arr3 = new char[arr1.length + arr2.length];
+        int i = 0;
+        for(; i<arr1.length; i++){
+            arr3[1]= arr1[i];
+        }
+        for(i=0; i<arr2.length; i++){
+            arr3[arr1.length+1] = arr2[i];
+        }
+        return arr3;
     }
 
     /** Returns a new array that can be described as a sub-array of this array.
@@ -85,7 +120,14 @@ public class ArrCharOps {
      */     
     public static char[] subArray(char[] arr, int beginIndex, int endIndex) {
         // Replace the following statement with your code
-        return null;
+        char[] newarr = new char[endIndex-beginIndex];
+        int i1;
+        int i2=beginIndex;
+        for(i1=0; i1<endIndex-beginIndex; i1++){
+            newarr[i1]=arr[i2];
+            i2++;
+        }
+        return newarr;
     }
 
      /** Returns a single integer that represents the given array. This integer is sometimes 
@@ -97,7 +139,12 @@ public class ArrCharOps {
      */
     public static long hashCode(char[] arr) {
         // Replace the following statement with your code
-        return 0;
+        int i;
+        int sum=0;
+        for(i=0; i<arr.length; i++){
+            sum += arr[i]* Math.pow(7, arr.length-(i+1));
+        }
+        return sum;
     }
 
     /**
@@ -127,6 +174,24 @@ public class ArrCharOps {
      */
     public static int compareTo(String str1, String str2) {
         // Replace the following statement with your code
+        // I will move the strings to arrs. then I will put the part that is the same in an arr
+        // then I will check which one of the strings has more than this part 
+        // if the length is the same I will do i j loop and compare
+        // letter by letter to see which one has a bigger letter
+        int i,j;
+        if(str1.length()!=str2.length()){
+            if(str1.length()>str2.length()){
+                return 1;
+            }
+            if(str2.length()>str1.length()){
+                return -1;
+            }
+        }
+        for(i=0; i<str1.length() && i<str2.length() ; i++){
+            if(str1.charAt(i)!=str2.charAt(i)){
+                // to check which is bigger and return
+            }
+        }
         return 0;
     }
 }
