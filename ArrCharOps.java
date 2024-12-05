@@ -144,10 +144,8 @@ public class ArrCharOps {
      */
     public static long hashCode(char[] arr) {
         long sum = 0;
-        long power = 1;
-        for (int i = arr.length - 1; i >= 0; i--) {
-            sum += arr[i] * power;
-            power *= 7;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i] * Math.pow(7, arr.length - (i + 1));
         }
         return sum;
     }
@@ -196,18 +194,32 @@ public class ArrCharOps {
     }
         */
         public static int compareTo(String str1, String str2) {
-            for (int i = 0; i < Math.min(str1.length(), str2.length()); i++) {
-                if (str1.charAt(i) < str2.charAt(i)) {
+            if (str1 == null || str2 == null) {
+                return -2;
+            }
+            if (str1.isEmpty() || str2.isEmpty()) {
+                return -2;
+            }
+            int minLength = Math.min(str1.length(), str2.length());
+            for (int i = 0; i < minLength; i++) {
+                char ch1 = str1.charAt(i);
+                char ch2 = str2.charAt(i);
+                if (ch1 < ch2) {
                     return -1;
-                } else if (str1.charAt(i) > str2.charAt(i)) {
+                }
+
+                else if (ch1 > ch2) {
                     return 1;
                 }
             }
-            if (str1.length() < str2.length()) {
-                return -1;
-            } else if (str1.length() > str2.length()) {
+
+            if (str1.length() > str2.length()) {
                 return 1;
+            } else if (str1.length() < str2.length()) {
+                return -1;
             }
+            
             return 0;
         }
+        
 }
