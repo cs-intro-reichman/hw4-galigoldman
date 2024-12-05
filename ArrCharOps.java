@@ -77,6 +77,9 @@ public class ArrCharOps {
      */
     public static int indexOf(char[] arr, char ch, int fromIndex) {
         // Replace the following statement with your code
+        if(fromIndex<0 || fromIndex>=arr.length){
+            return -1;
+        }
         int i;
         for (i=fromIndex; i<arr.length; i++){
             if(arr[i]==ch){
@@ -104,11 +107,11 @@ public class ArrCharOps {
         // Replace the following statement with your code
         char[] arr3 = new char[arr1.length + arr2.length];
         int i = 0;
-        for(; i<arr1.length; i++){
-            arr3[1]= arr1[i];
+        for(; i < arr1.length; i++){
+            arr3[i]= arr1[i];
         }
-        for(i=0; i<arr2.length; i++){
-            arr3[arr1.length+1] = arr2[i];
+        for(i=0; i < arr2.length; i++){
+            arr3[arr1.length + i] = arr2[i];
         }
         return arr3;
     }
@@ -171,13 +174,8 @@ public class ArrCharOps {
      *         zero if they are equal, and 1 if str1 is
      *         lexicographically greater than str2.
      *         return -2 if there is an error with the input.
-     */
+     
     public static int compareTo(String str1, String str2) {
-        // Replace the following statement with your code
-        // I will move the strings to arrs. then I will put the part that is the same in an arr
-        // then I will check which one of the strings has more than this part 
-        // if the length is the same I will do i j loop and compare
-        // letter by letter to see which one has a bigger letter
         int i,j;
         if(str1.length()!=str2.length()){
             if(str1.length()>str2.length()){
@@ -194,4 +192,25 @@ public class ArrCharOps {
         }
         return 0;
     }
+        */
+        public static int compareTo(String str1, String str2) {
+            // השוואת כל תו בתו
+            for (int i = 0; i < Math.min(str1.length(), str2.length()); i++) {
+                if (str1.charAt(i) < str2.charAt(i)) {
+                    return -1; // str1 קטן מ- str2
+                } else if (str1.charAt(i) > str2.charAt(i)) {
+                    return 1; // str1 גדול מ- str2
+                }
+            }
+        
+            // אם כל התווים תואמים, נבדוק את אורך המחרוזות
+            if (str1.length() < str2.length()) {
+                return -1; // str1 קצר יותר מ- str2
+            } else if (str1.length() > str2.length()) {
+                return 1; // str1 ארוך יותר מ- str2
+            }
+        
+            // אם הכל תואם, אז הן שוות
+            return 0; // str1 שווה ל- str2
+        }    
 }
