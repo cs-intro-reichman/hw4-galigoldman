@@ -26,6 +26,9 @@ public class Primes {
                 count++;
             }
         }
-        System.out.println("There are " + count + " primes between 2 and "+ n +" ("+ (100.0*count/(n-1)) +"% are primes)");
+        double percentage = 100.0 * count / (n - 1);
+        percentage = Math.round(percentage * 100.0) / 100.0; // עיגול ל-2 מקומות עשרוניים
+        System.out.println("There are " + count + " primes between 2 and " + n + 
+                   " (" + percentage + "% are primes)");
     }
 }

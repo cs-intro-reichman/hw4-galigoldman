@@ -34,22 +34,20 @@ public class MyString {
 
     /** If str1 contains str2, returns true; otherwise returns false. */
     public static boolean contains(String str1, String str2) {
-        // Replace the following statement with your code
-        int i,j,add=0;
-        String[] longer = str1.split("");
-        String[] shorter = str2.split("");
-        for(i=0; i < longer.length - shorter.length ; i++){
-            add=0;
-            for(j=0; j < shorter.length ; j++){
-                if(!longer[i+add].equals(shorter[j])){
-                    break;
-                }
-                add++;
-            }
-            if(j==shorter.length){
+        if (str2.isEmpty()) {
+            return true;
+        }
+        
+        if (str1.length() < str2.length()) {
+            return false;
+        }
+    
+        for (int i = 0; i <= str1.length() - str2.length(); i++) {
+            if (str1.substring(i, i + str2.length()).equals(str2)) {
                 return true;
             }
         }
+    
         return false;
     }
 }
