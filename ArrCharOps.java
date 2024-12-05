@@ -96,7 +96,9 @@ public class ArrCharOps {
         // Replace the following statement with your code
         int i;
         for(i=arr.length-1; i>=0; i--){
-            return i;
+            if (arr[i] == ch) {
+                return i;
+            }
         }
         return -1;
     }
@@ -141,11 +143,11 @@ public class ArrCharOps {
      *  The hash value of an empty array is zero.
      */
     public static long hashCode(char[] arr) {
-        // Replace the following statement with your code
-        int i;
-        int sum=0;
-        for(i=0; i<arr.length; i++){
-            sum += arr[i]* Math.pow(7, arr.length-(i+1));
+        long sum = 0;
+        long power = 1;
+        for (int i = arr.length - 1; i >= 0; i--) {
+            sum += arr[i] * power;
+            power *= 7;
         }
         return sum;
     }
@@ -194,23 +196,18 @@ public class ArrCharOps {
     }
         */
         public static int compareTo(String str1, String str2) {
-            // השוואת כל תו בתו
             for (int i = 0; i < Math.min(str1.length(), str2.length()); i++) {
                 if (str1.charAt(i) < str2.charAt(i)) {
-                    return -1; // str1 קטן מ- str2
+                    return -1;
                 } else if (str1.charAt(i) > str2.charAt(i)) {
-                    return 1; // str1 גדול מ- str2
+                    return 1;
                 }
             }
-        
-            // אם כל התווים תואמים, נבדוק את אורך המחרוזות
             if (str1.length() < str2.length()) {
-                return -1; // str1 קצר יותר מ- str2
+                return -1;
             } else if (str1.length() > str2.length()) {
-                return 1; // str1 ארוך יותר מ- str2
+                return 1;
             }
-        
-            // אם הכל תואם, אז הן שוות
-            return 0; // str1 שווה ל- str2
-        }    
+            return 0;
+        }
 }
